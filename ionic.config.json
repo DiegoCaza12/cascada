@@ -1,0 +1,7 @@
+{
+  "name": "cascada",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
