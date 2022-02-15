@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Loggin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Usuario</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_usuario"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Clave</ion-label>
+    <ion-input type="password" required [(ngModel)]="txt_clave"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-button (click)="verificar()">Ingresar</ion-button>
+  </ion-item>
+  <ion-item>
+    <p>Si no tienes una cuenta registrate</p>
+    <ion-button (click)="irRegistro()">registrar</ion-button>
+  </ion-item>
+</ion-content>
