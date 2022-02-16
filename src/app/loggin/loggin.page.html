@@ -1,23 +1,26 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Loggin</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <ion-item>
-    <ion-label>Usuario</ion-label>
-    <ion-input type="text" required [(ngModel)]="txt_usuario"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Clave</ion-label>
-    <ion-input type="password" required [(ngModel)]="txt_clave"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-button (click)="verificar()">Ingresar</ion-button>
-  </ion-item>
-  <ion-item>
-    <p>Si no tienes una cuenta registrate</p>
-    <ion-button (click)="irRegistro()">registrar</ion-button>
-  </ion-item>
-</ion-content>
+<div class="login">
+  <form class="custom-form" method="post">
+    <h1>Login</h1>
+    <input
+      type="text"
+      [(ngModel)]="txt_usuario"
+      name="txt_usuario"
+      placeholder="Usuario"
+      required="required"
+    />
+    <input
+      type="password"
+      [(ngModel)]="txt_clave"
+      name="txt_clave"
+      placeholder="Clave"
+      required="required"
+    />
+    <button type="submit" (click)="verificar()">ingresar</button> <br>
+    <ion-item >
+      <p>Olvidaste la contra recuperala</p> 
+    </ion-item>
+    <ion-item>
+      <button type="button" (click)="irRegistro()">registrar</button>
+    </ion-item>
+  </form>
+</div>
