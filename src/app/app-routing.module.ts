@@ -12,9 +12,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'productos',
-    loadChildren: () => import('./productos/productos.module').then( m => m.ProductosPageModule)
-  },  {
     path: 'registro',
     loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
   },
@@ -22,6 +19,16 @@ const routes: Routes = [
     path: 'loggin',
     loadChildren: () => import('./loggin/loggin.module').then( m => m.LogginPageModule)
   },
+  {
+    path: 'admenu',
+    loadChildren: () => import('./admenu/admenu.module').then( m => m.AdmenuPageModule)
+  },
+  {
+    path: 'admenu1/:opciones',
+    loadChildren: () => import('./admenu1/admenu1.module').then( m => m.Admenu1PageModule)
+  },
+
+  
 
 ];
 
