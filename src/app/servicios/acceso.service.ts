@@ -11,7 +11,7 @@ import 'rxjs/add/operator/timeout';
 })
 export class AccesoService {
 
-  server :string ="http://localhost/webServiceContactos/curd.php";
+  server :string ="http://localhost/LaCascada/crud.php";
 
 
   constructor(public http:HttpClient) { }

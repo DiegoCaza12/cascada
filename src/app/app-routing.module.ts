@@ -24,11 +24,9 @@ const routes: Routes = [
     loadChildren: () => import('./admenu/admenu.module').then( m => m.AdmenuPageModule)
   },
   {
-    path: 'admenu1/:opciones',
-    loadChildren: () => import('./admenu1/admenu1.module').then( m => m.Admenu1PageModule)
+    path: 'usuarios',
+    loadChildren: () => import('./usuarios/usuarios.module').then( m => m.UsuariosPageModule)
   },
-
-  
 
 ];
 
