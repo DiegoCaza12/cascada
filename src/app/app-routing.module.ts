@@ -15,17 +15,10 @@ const routes: Routes = [
     path: 'registro',
     loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
   },
+
   {
-    path: 'loggin',
-    loadChildren: () => import('./loggin/loggin.module').then( m => m.LogginPageModule)
-  },
-  {
-    path: 'admenu',
-    loadChildren: () => import('./admenu/admenu.module').then( m => m.AdmenuPageModule)
-  },
-  {
-    path: 'usuarios',
-    loadChildren: () => import('./usuarios/usuarios.module').then( m => m.UsuariosPageModule)
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
   },
 
 ];
@@ -37,3 +30,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
