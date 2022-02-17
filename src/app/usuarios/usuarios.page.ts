@@ -16,22 +16,20 @@ export class UsuariosPage implements OnInit {
     private servicio: AccesoService, 
     private navCtrl:NavController,
     public alertController:AlertController,
-    private router: Router) { }
+    private router: Router) { 
+      
+    }
 
   ngOnInit() {
     this.MostrarUsuarios();
   }
   MostrarUsuarios(){
     let body={
-      'accion':'ListarU',   
+      'accion':'ListarU'   
     }
     return new Promise (resolve=>{
-      this.servicio.postData(body).subscribe((res:any)=>{
-        if(res.estado){
-          this.usuarios=res.datos;
-        }else{
-          this.mostrarToast('Error al cargar datos');
-        }
+      this.servicio.postData(body).subscribe((response)=>{
+        this.usuarios=response;
       },(error)=>{
         this.mostrarToast('Error de conexion');
       });

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Usuarios</ion-title>
+    <ion-title>USUARIOS</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,9 +9,7 @@
     <ion-item-sliding *ngFor="let usuario of usuarios">
       <ion-item class="item-text-wrap" >
      
-          <ion-label>{{usuario.cedula}} {{usuario.nombre}} {{usuario.apellido}} {{usuario.email}} {{usuario.telefono}}
-                      {{usuario.direccion}} {{usuario.usuario}} {{usuario.clave}} {{usuario.tipo usuario}} 
-          </ion-label>
+          <ion-label>{{usuario.nombre }}</ion-label>
        
       </ion-item>
   
@@ -21,4 +19,8 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+
+  <ion-item>
+    <ion-button (click)="registra()">Registrar Usuario</ion-button>
+  </ion-item> 
 </ion-content>
