@@ -20,6 +20,19 @@ const routes: Routes = [
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
   },
+  {
+    path: 'loggin',
+    loadChildren: () => import('./loggin/loggin.module').then( m => m.LogginPageModule)
+  },
+  {
+    path: 'admenu',
+    loadChildren: () => import('./admenu/admenu.module').then( m => m.AdmenuPageModule)
+  },
+  {
+    path: 'usuarios',
+    loadChildren: () => import('./usuarios/usuarios.module').then( m => m.UsuariosPageModule)
+  
+  },
 
 ];
 
