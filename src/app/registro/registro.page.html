@@ -5,5 +5,46 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-item>
+    <ion-label>Cedula</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_cedula"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Nombre</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Apellido</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_apellido"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Email</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Telefono</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_telefono"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Direccion</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_direccion"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Usuario</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_usuario"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Clave</ion-label>
+    <ion-input type="password" required [(ngModel)]="txt_clave"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Tipo Usuario</ion-label>
+          <ion-select required [(ngModel)]="txt_tipousuario"placeholder="Selecciona tipo usuario">
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+          </ion-select>
+  </ion-item>
+  <ion-item>
+    <button type="submit" (click)="registrar()">Ingresar</button> <br>
+  </ion-item>
 </ion-content>

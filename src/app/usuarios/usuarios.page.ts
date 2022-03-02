@@ -27,6 +27,9 @@ export class UsuariosPage implements OnInit {
   ngOnInit() {
     
   }
+  public registrar(){
+    this.navCtrl.navigateRoot(['/registro'])
+  }
   ionViewDidEnter(){
     this.MostrarUsuarios();
     }
@@ -51,6 +54,7 @@ export class UsuariosPage implements OnInit {
         
       });
     }
+ 
   async mostrarToast(texto)
   {
     const toast= await this.ToastCtrl.create({

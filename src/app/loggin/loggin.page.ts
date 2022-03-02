@@ -19,7 +19,7 @@ export class LogginPage implements OnInit {
   ngOnInit() {
   }
 
-  public irRegistro(){
+  public irRecuperar(){
     this.navCtrl.navigateRoot(['/registro'])
   }
 

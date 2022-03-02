@@ -9,21 +9,22 @@
     <ion-item-sliding *ngFor="let usuario of usuarios">
       <ion-item class="item-text-wrap" >
      
-          <ion-label>{{usuario.cedula }} {{usuario.nombre }}
+          <ion-label>
+            {{usuario.cedula }} {{usuario.nombre }}
             {{usuario.apellido }}{{usuario.email }}
-            {{usuario.telefono }}{{usuario.direccion }}
+            {{usuario.telefono }}{{usuario.direccion}}
           </ion-label>
        
       </ion-item>
   
       <ion-item-options side="end">
-        <ion-item-option (click)="editar(contacto.codigo)">Modificar</ion-item-option>
-        <ion-item-option color="danger" (click)="eliminar(contacto.codigo)">Eliminar</ion-item-option>
+        <ion-item-option (click)="editar(usuario.idusuario)">Modificar</ion-item-option>
+        <ion-item-option color="danger" (click)="eliminar(usuario.idusuario)">Eliminar</ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
 
   <ion-item>
-    <ion-button (click)="registra()">Registrar Usuario</ion-button>
+    <ion-button color="dark"(click)="registrar()">Registrar Usuarios</ion-button>
   </ion-item> 
 </ion-content>
