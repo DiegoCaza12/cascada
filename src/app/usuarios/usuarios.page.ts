@@ -10,31 +10,47 @@ import { Router } from '@angular/router';
 })
 export class UsuariosPage implements OnInit {
   usuarios:any = [];
-  
+  cod:any;
 
   constructor(private ToastCtrl: ToastController,
     private servicio: AccesoService, 
     private navCtrl:NavController,
     public alertController:AlertController,
-    private router: Router) { 
-      
+    private router: Router) 
+    { 
+      this.servicio.getsesion('id_usuario').then(res=>{
+        this.cod=res;
+        this.mostrarToast( this.cod);
+      });
     }
 
   ngOnInit() {
+    
+  }
+  ionViewDidEnter(){
     this.MostrarUsuarios();
-  }
-  MostrarUsuarios(){
-    let body={
-      'accion':'ListarU'   
     }
-    return new Promise (resolve=>{
-      this.servicio.postData(body).subscribe((response)=>{
-        this.usuarios=response;
-      },(error)=>{
-        this.mostrarToast('Error de conexion');
+    MostrarUsuarios(){
+      let body={
+        'accion':'ListarU',
+        'cod':this.cod
+      }
+      return new Promise(resolve=> {
+        this.servicio.postData(body).subscribe((res:any)=>{
+          if(res.estado)
+          {
+            this.usuarios=res.datos;
+          }
+          else
+          {
+            this.mostrarToast('Error al cargar datos');
+          }
+        }, (error)=>{
+          this.mostrarToast('Error de conexion');
+        });
+        
       });
-    });
-  }
+    }
   async mostrarToast(texto)
   {
     const toast= await this.ToastCtrl.create({

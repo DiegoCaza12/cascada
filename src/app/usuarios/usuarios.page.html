@@ -9,7 +9,10 @@
     <ion-item-sliding *ngFor="let usuario of usuarios">
       <ion-item class="item-text-wrap" >
      
-          <ion-label>{{usuario.nombre }}</ion-label>
+          <ion-label>{{usuario.cedula }} {{usuario.nombre }}
+            {{usuario.apellido }}{{usuario.email }}
+            {{usuario.telefono }}{{usuario.direccion }}
+          </ion-label>
        
       </ion-item>
   
