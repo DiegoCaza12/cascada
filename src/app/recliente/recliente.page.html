@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>registrar clientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Cedula</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_cedula"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Nombre</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Apellido</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_apellido"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Email</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Telefono</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_telefono"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Direccion</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_direccion"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-button color="secondary"(click)="registrar()">Guardar</ion-button>
+  </ion-item>
+</ion-content>
