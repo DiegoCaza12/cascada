@@ -40,6 +40,10 @@ const routes: Routes = [
     path: 'recliente',
     loadChildren: () => import('./recliente/recliente.module').then( m => m.ReclientePageModule)
   },
+  {
+    path: 'musuarios',
+    loadChildren: () => import('./musuarios/musuarios.module').then( m => m.MusuariosPageModule)
+  },
 
 
 ];

@@ -44,7 +44,7 @@ export class LogginPage implements OnInit {
               if(res.estado)
               {
                 this.usuario=res.datos;
-                this.servicio.setsesion('id_usuario', this.usuario[0].codigo);
+                this.servicio.setsesion('id_usuario', this.usuario[0].idusuario);
                 this.mostrarToast("Ingreso Satisfactorio");
                 this.navCtrl.navigateRoot(['/admenu'])
               }

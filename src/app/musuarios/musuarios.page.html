@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>modificar usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-item *ngFor="let contacto of contactos">
+    <ion-label>Cedula :  </ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_cedula"> {{ contacto.cedula }}</ion-input>
+  </ion-item>
+  <ion-item *ngFor="let contacto of contactos">
+    <ion-label>Nombre :  </ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_nombre"> {{ contacto.nombre }}</ion-input>
+  </ion-item>
+
+  <ion-item *ngFor="let contacto of contactos">
+    <ion-label>Apellido :</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_apellido">{{ contacto.apellido }}</ion-input>
+  </ion-item>
+  <ion-item *ngFor="let contacto of contactos">
+    <ion-label>Email :  </ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_email"> {{ contacto.email }}</ion-input>
+  </ion-item>
+  <ion-item *ngFor="let contacto of contactos">
+    <ion-label>Telefono :</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_telefono">{{ contacto.telefono }}</ion-input>
+  </ion-item>
+  <ion-item *ngFor="let contacto of contactos">
+    <ion-label>Direccion :  </ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_direccion"> {{ contacto.direccion }}</ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-button (click)="modificar()">Modificar</ion-button>
+  </ion-item> 
+  <ion-item>
+    <ion-button (click)='eliminar()'>eliminar</ion-button>
+  </ion-item> 
+</ion-content>

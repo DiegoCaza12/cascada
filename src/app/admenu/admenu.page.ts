@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { AccesoService } from '../servicios/acceso.service';
 
 @Component({
@@ -10,6 +11,7 @@ export class AdmenuPage implements OnInit {
   cod: any;
   constructor(
     private servicio: AccesoService, 
+    private ToastCtrl: ToastController
   ) { 
     this.servicio.getsesion('id_usuario').then(res=>{
       this.cod=res;
@@ -19,5 +21,13 @@ export class AdmenuPage implements OnInit {
 
   ngOnInit() {
   }
-
+  async mostrarToast(texto)
+  {
+    const toast= await this.ToastCtrl.create({
+      message: texto,
+      duration: 1500,
+      position: 'top'
+    });
+    toast.present();
+  }
 }

@@ -17,7 +17,6 @@ export class ClientesPage implements OnInit {
   ) { 
     this.servicio.getsesion('id_usuario').then(res=>{
       this.cod=res;
-      console.log(this.cod);
       this.mostrarToast( this.cod);
     });
   }

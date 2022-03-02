@@ -54,7 +54,10 @@ export class UsuariosPage implements OnInit {
         
       });
     }
- 
+  public editar(idusuario){
+    this.servicio.setsesion('idusuario',idusuario);
+    this.navCtrl.navigateRoot(['/musuarios']);
+  }
   async mostrarToast(texto)
   {
     const toast= await this.ToastCtrl.create({
