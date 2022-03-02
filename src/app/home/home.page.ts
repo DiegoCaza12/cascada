@@ -19,7 +19,7 @@ export class HomePage {
   ngOnInit() {
   }
 
-  public verificar(){
-    this.navCtrl.navigateRoot(['/loggin'])
+  public Loggin(){
+    this.navCtrl.navigateRoot(['/loggin']);
   }
 }
