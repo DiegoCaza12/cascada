@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-
+import { VigilanteGuard } from './vigilante.guard';
 const routes: Routes = [
   {
     path: 'home',
@@ -27,42 +27,52 @@ const routes: Routes = [
   {
     path: 'admenu',
     loadChildren: () => import('./admenu/admenu.module').then( m => m.AdmenuPageModule)
+    ,canActivate:[VigilanteGuard]
   },
   {
     path: 'usuarios',
     loadChildren: () => import('./usuarios/usuarios.module').then( m => m.UsuariosPageModule)
-  
+    ,canActivate:[VigilanteGuard]
   },
   {
     path: 'clientes',
     loadChildren: () => import('./clientes/clientes.module').then( m => m.ClientesPageModule)
+    ,canActivate:[VigilanteGuard]
   },
   {
     path: 'recliente',
     loadChildren: () => import('./recliente/recliente.module').then( m => m.ReclientePageModule)
+    ,canActivate:[VigilanteGuard]
   },
   {
     path: 'musuarios',
     loadChildren: () => import('./musuarios/musuarios.module').then( m => m.MusuariosPageModule)
+    ,canActivate:[VigilanteGuard]
   },
   {
     path: 'ecliente',
     loadChildren: () => import('./client/ecliente/ecliente.module').then( m => m.EclientePageModule)
-  },  {
+    ,canActivate:[VigilanteGuard]
+  },
+  {
     path: 'producto',
     loadChildren: () => import('./productos/producto/producto.module').then( m => m.ProductoPageModule)
+    ,canActivate:[VigilanteGuard]
   },
   {
     path: 'reproductos',
     loadChildren: () => import('./productos/reproductos/reproductos.module').then( m => m.ReproductosPageModule)
+    ,canActivate:[VigilanteGuard]
   },
   {
     path: 'acproducto',
     loadChildren: () => import('./productos/acproducto/acproducto.module').then( m => m.AcproductoPageModule)
+    ,canActivate:[VigilanteGuard]
   },
   {
     path: 'eproducto',
     loadChildren: () => import('./productos/eproducto/eproducto.module').then( m => m.EproductoPageModule)
+    ,canActivate:[VigilanteGuard]
   },
 
 

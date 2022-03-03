@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { AccesoService } from '../servicios/acceso.service';
@@ -13,7 +14,8 @@ export class LogginPage implements OnInit {
   constructor(
     private ToastCtrl: ToastController,
     private servicio: AccesoService, 
-    private navCtrl:NavController
+    private navCtrl:NavController,
+    private cookie:CookieService
   ) { }
 
   ngOnInit() {
@@ -47,6 +49,7 @@ export class LogginPage implements OnInit {
                 this.servicio.setsesion('id_usuario', this.usuario[0].idusuario);
                 this.mostrarToast("Ingreso Satisfactorio");
                 this.navCtrl.navigateRoot(['/admenu'])
+                this.cookie.set('token',res.token);
               }
               else
               {
