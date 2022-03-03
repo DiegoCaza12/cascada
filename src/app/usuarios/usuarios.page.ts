@@ -58,6 +58,10 @@ export class UsuariosPage implements OnInit {
     this.servicio.setsesion('idusuario',idusuario);
     this.navCtrl.navigateRoot(['/musuarios']);
   }
+  public eliminar(idusuario){
+    this.servicio.setsesion('idusuario',idusuario);
+    this.navCtrl.navigateRoot(['/musuarios']);
+  }
   async mostrarToast(texto)
   {
     const toast= await this.ToastCtrl.create({

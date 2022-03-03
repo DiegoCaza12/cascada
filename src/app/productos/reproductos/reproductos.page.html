@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Nombre</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Detalle</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_detalle"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Precio</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_precio"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-button color="secondary"(click)="registrar()">Guardar</ion-button>
+  </ion-item>
+</ion-content>

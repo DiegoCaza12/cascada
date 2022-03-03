@@ -32,7 +32,8 @@ const routes: Routes = [
     path: 'usuarios',
     loadChildren: () => import('./usuarios/usuarios.module').then( m => m.UsuariosPageModule)
   
-  },  {
+  },
+  {
     path: 'clientes',
     loadChildren: () => import('./clientes/clientes.module').then( m => m.ClientesPageModule)
   },
@@ -44,6 +45,26 @@ const routes: Routes = [
     path: 'musuarios',
     loadChildren: () => import('./musuarios/musuarios.module').then( m => m.MusuariosPageModule)
   },
+  {
+    path: 'ecliente',
+    loadChildren: () => import('./client/ecliente/ecliente.module').then( m => m.EclientePageModule)
+  },  {
+    path: 'producto',
+    loadChildren: () => import('./productos/producto/producto.module').then( m => m.ProductoPageModule)
+  },
+  {
+    path: 'reproductos',
+    loadChildren: () => import('./productos/reproductos/reproductos.module').then( m => m.ReproductosPageModule)
+  },
+  {
+    path: 'acproducto',
+    loadChildren: () => import('./productos/acproducto/acproducto.module').then( m => m.AcproductoPageModule)
+  },
+  {
+    path: 'eproducto',
+    loadChildren: () => import('./productos/eproducto/eproducto.module').then( m => m.EproductoPageModule)
+  },
+
 
 
 ];

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>eproducto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" >
+  <ion-item *ngFor="let contacto of productos">
+    <ion-label>Nombre : {{ contacto.nombre }} </ion-label>
+  </ion-item>
+
+  <ion-item *ngFor="let contacto of productos">
+    <ion-label>Detalle :  </ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_detalle"> {{ contacto.detalle }}</ion-input>
+  </ion-item>
+
+  <ion-item *ngFor="let contacto of contactos">
+    <ion-label>Precio :</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_precio">{{ contacto.precio }}</ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-button (click)='eliminar()'>eliminar</ion-button>
+  </ion-item> 
+
+</ion-content>
