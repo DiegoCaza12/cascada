@@ -19,7 +19,5 @@ export class HomePage {
   ngOnInit() {
   }
 
-  public Loggin(){
-    this.navCtrl.navigateRoot(['/loggin']);
-  }
+ 
 }

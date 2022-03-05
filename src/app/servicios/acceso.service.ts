@@ -1,3 +1,4 @@
+import { NavController } from '@ionic/angular';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -14,7 +15,8 @@ export class AccesoService {
   server :string ="http://localhost/LaCascada/crud.php";
 
 
-  constructor(public http:HttpClient) { }
+  constructor(public http:HttpClient,
+    private nat:NavController,) { }
   postData(body){
     let headers= new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
     let options={
@@ -43,5 +45,10 @@ export class AccesoService {
  {
    const item= await Storage.get({key:id});
    return item.value;
+ }
+ async logout(id)
+ {
+  await Storage.remove({key:id});
+  this.nat.navigateRoot('/',{replaceUrl:true});
  }
 }

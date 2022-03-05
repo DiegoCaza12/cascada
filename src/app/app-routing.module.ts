@@ -73,7 +73,11 @@ const routes: Routes = [
     path: 'eproducto',
     loadChildren: () => import('./productos/eproducto/eproducto.module').then( m => m.EproductoPageModule)
     ,canActivate:[VigilanteGuard]
+  },  {
+    path: 'ventas',
+    loadChildren: () => import('./ventas/ventas.module').then( m => m.VentasPageModule)
   },
+
 
 
 
