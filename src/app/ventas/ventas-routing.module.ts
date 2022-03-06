@@ -9,8 +9,7 @@ const routes: Routes = [
     component: VentasPage
   },
   {
-    path: 'reventa',
-    loadChildren: () => import('./reventas/reventa/reventa.module').then( m => m.ReventaPageModule)
+    
   }
 ];
 

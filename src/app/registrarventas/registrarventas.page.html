@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>registrar ventas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Fecha</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_fecha" placeholder="YYYY-MM-DD"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>idproducto</ion-label>
+    <select placeholder="Selecciona producto"required [(ngModel)]="txt_producto">
+      <option *ngFor="let persona of productos" value="persona.idproducto">{{ persona.idproducto }}</option>
+    </select>
+  </ion-item>
+  <ion-item>
+    <ion-label>idusuario</ion-label>
+    <select placeholder="Selecciona usuario"required [(ngModel)]="txt_usuario">
+      <option *ngFor="let persona of usuarios" value="persona.idusuario">{{ persona.idusuario }}</option>
+    </select>
+  </ion-item>
+  <ion-item>
+    <ion-label>idcliente</ion-label>
+    <select placeholder="Selecciona cliente"required [(ngModel)]="txt_cliente">
+      <option *ngFor="let persona of cliente" value="persona.idcliente">{{ persona.idcliente }}</option>
+    </select>
+    </ion-item>
+  <ion-item>
+    <ion-label>Cantidad</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_cantidad"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Precio Unitario</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_precioUnit"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Total</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_total"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-button color="secondary"(click)="registrar()">Guardar</ion-button>
+  </ion-item>
+</ion-content>
+
