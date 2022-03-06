@@ -21,6 +21,10 @@ export class AdmenuPage implements OnInit {
 
   ngOnInit() {
   }
+  logout()
+  {
+    this.servicio.logout('id_usuario');
+  }
   async mostrarToast(texto)
   {
     const toast= await this.ToastCtrl.create({

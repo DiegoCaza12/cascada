@@ -35,6 +35,7 @@ export class AccesoService {
   .timeout(590000)
   .map(res=>res);
   }
+  
  async setsesion(id, valor) {
    await Storage.set({
      key:id,

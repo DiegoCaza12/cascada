@@ -47,6 +47,7 @@ export class ProductoPage implements OnInit {
           }
         }, (error)=>{
           this.mostrarToast('Error de conexion');
+          console.log(error);
         });
         
       });
