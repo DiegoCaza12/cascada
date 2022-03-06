@@ -4,13 +4,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
   <ion-content>
     <ion-list>
       <ion-item-sliding *ngFor="let cliente of clientes">
         <ion-item class="item-text-wrap" >
        
-            <ion-label>{{cliente.cedula }} {{cliente.nombre }}{{cliente.apellido }} </ion-label>        
+            <ion-label>{{cliente.cedula }} {{cliente.nombre }} {{cliente.apellido }} 
+                        {{cliente.email }} {{cliente.telefono }} {{cliente.direccion }}
+            </ion-label>        
          
         </ion-item>
     
@@ -23,6 +24,10 @@
   
     <ion-item>
       <ion-button color="dark"(click)="registrar()">Registrar Clientes</ion-button>
-    </ion-item> 
+    </ion-item>  
+    <ion-item>
+      <ion-button color="primary"(click)="volver()">Regresar menu</ion-button>
+    </ion-item>
+
   </ion-content>
-</ion-content>
+

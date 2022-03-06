@@ -34,10 +34,10 @@ export class ClientesPage implements OnInit {
     MostrarClientes(){
       let body={
         'accion':'ListarC',
-        'cod':this.cod
+        
       }
       return new Promise(resolve=> {
-        this.servicio.postData(body).subscribe((res:any)=>{
+        this.servicio.getData().subscribe((res:any)=>{
           if(res.estado)
           {
             this.clientes=res.datos;
@@ -52,7 +52,9 @@ export class ClientesPage implements OnInit {
         
       });
     }
- 
+    volver(){
+      this.navCtrl.navigateRoot(['/admenu'])
+    }
   async mostrarToast(texto)
   {
     const toast= await this.ToastCtrl.create({

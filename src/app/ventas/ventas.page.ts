@@ -58,6 +58,9 @@ export class VentasPage implements OnInit {
     this.servicio.setsesion('idventas',idventas);
     this.navCtrl.navigateRoot(['/eventas']);
   }
+  public volver(){
+    this.navCtrl.navigateRoot(['/admenu'])
+  }
   async mostrarToast(texto)
   {
     const toast= await this.ToastCtrl.create({

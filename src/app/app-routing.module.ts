@@ -73,14 +73,23 @@ const routes: Routes = [
     path: 'eproducto',
     loadChildren: () => import('./productos/eproducto/eproducto.module').then( m => m.EproductoPageModule)
     ,canActivate:[VigilanteGuard]
-  },  {
+  },
+  {
     path: 'ventas',
     loadChildren: () => import('./ventas/ventas.module').then( m => m.VentasPageModule)
   },
   {
     path: 'registrarventas',
     loadChildren: () => import('./registrarventas/registrarventas.module').then( m => m.RegistrarventasPageModule)
+  },  {
+    path: 'usumenu',
+    loadChildren: () => import('./usumenu/usumenu.module').then( m => m.UsumenuPageModule)
   },
+  {
+    path: 'usu-loggin',
+    loadChildren: () => import('./usu-loggin/usu-loggin.module').then( m => m.UsuLogginPageModule)
+  },
+
 
 
 

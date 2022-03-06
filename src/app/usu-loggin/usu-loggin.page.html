@@ -1,0 +1,26 @@
+<div class="login">
+  <form class="custom-form" method="post">
+    <h1>Loggin empleados</h1>
+    <input
+      type="text"
+      [(ngModel)]="txt_usuario"
+      name="txt_usuario"
+      placeholder="Usuario"
+      required="required"
+    />
+    <input
+      type="password"
+      [(ngModel)]="txt_clave"
+      name="txt_clave"
+      placeholder="Clave"
+      required="required"
+    />
+    <button type="submit" (click)="verificar()">Ingresar</button> <br>
+    <ion-item >
+      <p>Recuperar Contraseña</p> 
+    </ion-item>
+    <ion-item>
+      <button type="button" (click)="irRecuperar()">Recuperar</button>
+    </ion-item>
+  </form>
+</div>

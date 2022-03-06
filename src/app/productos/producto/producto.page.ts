@@ -60,6 +60,10 @@ export class ProductoPage implements OnInit {
     this.servicio.setsesion('idusuario',idusuario);
     this.navCtrl.navigateRoot(['/eproducto']);
   }
+  public volver()
+  {
+    this.navCtrl.navigateRoot(['/admenu']);
+  }
   async mostrarToast(texto)
   {
     const toast= await this.ToastCtrl.create({
