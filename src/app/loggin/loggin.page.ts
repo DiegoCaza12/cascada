@@ -37,7 +37,7 @@ export class LogginPage implements OnInit {
     else
     {
         let body={
-          'accion': 'loggin',
+          'accion': 'logginadm',
           'usuario':this.txt_usuario,
           'clave': this.txt_clave
         }

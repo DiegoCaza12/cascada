@@ -89,6 +89,18 @@ const routes: Routes = [
     path: 'usu-loggin',
     loadChildren: () => import('./usu-loggin/usu-loggin.module').then( m => m.UsuLogginPageModule)
   },
+  {
+    path: 'usuclientes',
+    loadChildren: () => import('./usuclientes/usuclientes.module').then( m => m.UsuclientesPageModule)
+  },
+  {
+    path: 'usuproductos',
+    loadChildren: () => import('./usuproductos/usuproductos.module').then( m => m.UsuproductosPageModule)
+  },
+  {
+    path: 'usuventas',
+    loadChildren: () => import('./usuventas/usuventas.module').then( m => m.UsuventasPageModule)
+  },
 
 
 
