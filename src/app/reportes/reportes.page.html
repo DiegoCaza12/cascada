@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>reportes</ion-title>
+    <ion-button slot="start">
+      <ion-back-button defaultHref="/"> </ion-back-button>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Fecha</ion-label>
+    <ion-input
+          value="{{ date | date:'yyyy/MM/dd'}}"
+          id="date"
+          class="ion-text-end"
+        ></ion-input>
+        <ion-popover trigger="date" size="cover">
+          <ng-template>
+            <ion-datetime
+            displayFormat="YYYY-MM-DD"
+              min="2000-03-01"
+              max="2030-12-01"
+              presentation="date"
+              [(ngModel)]="date"
+              locale="es-SI"
+            ></ion-datetime>
+          </ng-template>
+        </ion-popover>
+    </ion-item>
+    <ion-item>
+      <ion-button (click)="listardiario()" >Buscar</ion-button>
+    </ion-item>
+    <ion-item *ngFor="let usu of usuarios"> 
+      <ion-label>Fecha: {{usu.fecha}} </ion-label>
+      <ion-label>IdCliente: {{usu.idusuario}} </ion-label>
+      <ion-label>IdUsuario: {{usu.idusuario}} </ion-label>
+      <ion-label>Total: {{usu.total}} </ion-label>
+    </ion-item>
+</ion-content>
