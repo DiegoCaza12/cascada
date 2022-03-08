@@ -1,35 +1,29 @@
 <ion-header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" routerLink="/admenu">Cascada</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/usuarios" routerLinkActive="active"> <ion-icon slot="start" name="accessibility-outline"></ion-icon> Usuarios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/clientes" routerLinkActive="active"> <ion-icon slot="start" name="accessibility-outline"></ion-icon>Clientes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/producto" routerLinkActive="active"> <ion-icon slot="start" name="water-outline"></ion-icon>Productos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/ventas" routerLinkActive="active"> <ion-icon slot="start" name="logo-usd"></ion-icon>Ventas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/reportes" routerLinkActive="active"> <ion-icon slot="start" name="document-text-outline"></ion-icon>Reportes</a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" routerLink="/home" routerLinkActive="active"><ion-icon slot="icon-only" name="log-out"></ion-icon></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <ion-toolbar color="primary">
+    <ion-title>ADM MENU</ion-title>
+    <ion-button slot="end" (click)="logout()">
+      <ion-icon slot="icon-only" name="log-out"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
+  <ion-list-header color="primary">
+    <ion-label>Seleccinar una Opción</ion-label>
+  </ion-list-header>
+  <ion-item >
+    <a class="nav-link" routerLink="/usuarios" routerLinkActive="active"> <ion-icon slot="start" name="accessibility-outline"></ion-icon> Usuarios</a>
+  </ion-item>
+  <ion-item >
+    <a class="nav-link" routerLink="/clientes" routerLinkActive="active"> <ion-icon slot="start" name="accessibility-outline"></ion-icon>Clientes</a>
+  </ion-item>
+  <ion-item >
+    <a class="nav-link" routerLink="/producto" routerLinkActive="active"> <ion-icon slot="start" name="water-outline"></ion-icon>Productos</a>
+  </ion-item>
+  <ion-item >
+    <a class="nav-link" routerLink="/ventas" routerLinkActive="active"> <ion-icon slot="start" name="logo-usd"></ion-icon>Ventas</a>
+  </ion-item>
+  <ion-item >
+    <a class="nav-link" routerLink="/reportes" routerLinkActive="active"> <ion-icon slot="start" name="document-text-outline"></ion-icon>Reportes</a>
+  </ion-item>
 </ion-content>

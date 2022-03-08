@@ -77,13 +77,16 @@ const routes: Routes = [
   {
     path: 'ventas',
     loadChildren: () => import('./ventas/ventas.module').then( m => m.VentasPageModule)
+    ,canActivate:[VigilanteGuard]
   },
   {
     path: 'registrarventas',
     loadChildren: () => import('./registrarventas/registrarventas.module').then( m => m.RegistrarventasPageModule)
-  },  {
+  },
+  {
     path: 'usumenu',
     loadChildren: () => import('./usumenu/usumenu.module').then( m => m.UsumenuPageModule)
+    ,canActivate:[VigilanteGuard]
   },
   {
     path: 'usu-loggin',
@@ -104,6 +107,7 @@ const routes: Routes = [
   {
     path: 'reportes',
     loadChildren: () => import('./reportes/reportes.module').then( m => m.ReportesPageModule)
+    ,canActivate:[VigilanteGuard]
   },
 
 

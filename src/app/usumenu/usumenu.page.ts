@@ -1,3 +1,4 @@
+import { AccesoService } from './../servicios/acceso.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsumenuPage implements OnInit {
 
-  constructor() { }
+  constructor(private servicio:AccesoService) { }
 
   ngOnInit() {
   }
-
+  logout()
+  {
+    this.servicio.logout('id_usuario');
+  }
 }

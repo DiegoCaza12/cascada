@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { AccesoService } from '../servicios/acceso.service';
 
+
 @Component({
   selector: 'app-admenu',
   templateUrl: './admenu.page.html',
@@ -10,28 +11,18 @@ import { AccesoService } from '../servicios/acceso.service';
 export class AdmenuPage implements OnInit {
   cod: any;
   constructor(
-    private servicio: AccesoService, 
-    private ToastCtrl: ToastController
+    private servicio:AccesoService
   ) { 
-    this.servicio.getsesion('id_usuario').then(res=>{
-      this.cod=res;
-      //this.mostrarToast( this.cod);
-    });
+    
   }
+  ngOnInit(): void {
+    
+  }
+  
 
-  ngOnInit() {
-  }
   logout()
   {
     this.servicio.logout('id_usuario');
   }
-  async mostrarToast(texto)
-  {
-    const toast= await this.ToastCtrl.create({
-      message: texto,
-      duration: 1500,
-      position: 'top'
-    });
-    toast.present();
-  }
+  
 }
