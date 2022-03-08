@@ -1,5 +1,6 @@
+import { Team1 } from './../models/teams1';
 import { AccesoService } from './../servicios/acceso.service';
-import { NavController, ToastController } from '@ionic/angular';
+import { NavController, ToastController, AlertController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registrarventas.page.scss'],
 })
 export class RegistrarventasPage implements OnInit {
-  
+  id = ''
+  team1:Team1 = {cedula:'',nombre:'',apellido:'',email:'', telefono:'', direccion:''}
+  ListTeam:Team1 []
   usuarios:any = [];
   clientes:any= [];
   cod:any;
@@ -22,13 +25,15 @@ export class RegistrarventasPage implements OnInit {
   time = new Date(null);
   fecha : Date = new Date();
   constructor(
-    private ToastCtrl: ToastController,
+    public toastController: ToastController,
     private servicio: AccesoService, 
-    private navCtrl:NavController
+    private navCtrl:NavController,
+    public alertController: AlertController
   ) {
     this.servicio.getsesion('id_usuario').then(res=>{
       this.cod=res;
       });
+
    }
 
   ngOnInit() {
@@ -41,6 +46,28 @@ export class RegistrarventasPage implements OnInit {
     
 
   }
+  /*
+  public getId1(id:string):void{
+    this.id = id
+    this.presentAlertConfirm()
+  }
+
+  public getTeam1(id:string):void{
+   this.apiService.getTeam1(id).subscribe(
+     (response) => { 
+       const {id,cedula, nombre, apellido,email, telefono,direccion} = response
+       this.team1.id = id 
+       this.team1.cedula = cedula
+       this.team1.nombre = nombre
+       this.team1.apellido = apellido
+       this.team1.email = email
+       this.team1.telefono = telefono
+       this.team1.direccion = direccion
+       this.isUpdate = true
+       this.bandera = true
+      },
+     (error) => { console.log(error) })
+  }*/
   ionViewDidEnter(){
     
     this.MostrarClientes();
@@ -95,33 +122,7 @@ export class RegistrarventasPage implements OnInit {
         
       });
     }
-    /*public modificar()
-    {
-        let body={
-          'accion': 'modificarP',
-          'cod': this.cod,
-          'nombre': this.txt_nombre,
-          'detalle': this.txt_detalle,
-          'precio': this.txt_precio,
-         
-        }
-        return new Promise (resolve =>{
-          this.servicio.postData(body).subscribe((res:any)=>{
-            if(res.estado)
-            {
-              this.mostrarToast("Actualizacion satisfactoria");
-              this.navCtrl.navigateRoot(['/producto']);
-            }
-            else
-            {
-              this.mostrarToast('erro al guardar');
-            }
-          }, (err)=>{
-            this.mostrarToast('Error de Conexion');
-          });
-        });
-    }
-  */
+    
     public guardar(){
       if(this.txt_producto=='Botellones'){
         this.txt_precio='0.90'
@@ -181,11 +182,19 @@ export class RegistrarventasPage implements OnInit {
   
   async mostrarToast(texto)
   {
-    const toast= await this.ToastCtrl.create({
+    const toast= await this.toastController.create({
       message: texto,
       duration: 1500,
       position: 'top'
     });
     toast.present();
   }
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      message:message.msg ,
+      duration: 2000,
+      color:"primary"
+    });
+    toast.present();
+   }
 }
