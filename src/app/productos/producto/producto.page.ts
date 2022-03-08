@@ -1,5 +1,6 @@
+import { Team } from './../../models/teams';
 import { Component, OnInit } from '@angular/core';
-import { NavController, ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 import { AccesoService } from 'src/app/servicios/acceso.service';
 
 @Component({
@@ -8,69 +9,123 @@ import { AccesoService } from 'src/app/servicios/acceso.service';
   styleUrls: ['./producto.page.scss'],
 })
 export class ProductoPage implements OnInit {
-  productos:any = [];
-  cod:any;
+  id = ''
+  bandera = false
+  isUpdate = false
+  team:Team = {nombre:'', detalle:'', precio:''}
+  ListTeam:Team []
 
-  constructor(
-    private ToastCtrl: ToastController,
-    private servicio: AccesoService, 
-    private navCtrl:NavController
-  ) { 
-    this.servicio.getsesion('id_usuario').then(res=>{
-      this.cod=res;
-      this.mostrarToast( this.cod);
-    });
+  constructor(public apiService:AccesoService,
+              public toastController: ToastController,
+              public alertController: AlertController) { 
+    this.LoadTeam();
+    
   }
 
   ngOnInit() {
   }
-  public registrar(){
-    this.navCtrl.navigateRoot(['/reproductos'])
+  public openAndCloseModal():void{
+    this.bandera = !this.bandera
+    this.isUpdate = false
+    this.clearInput()
+}
+
+  public LoadTeam():void{
+    this.apiService.getTeams().subscribe(
+      (response) => { 
+        this.ListTeam = response
+       },
+      (error) => { console.log(error) })
   }
-  ionViewDidEnter(){
-    this.MostrarUsuarios();
+  public save():void{
+    if(this.isUpdate){
+      this.apiService.updateTeam(this.team).subscribe(
+        (response) => { 
+           this.presentToast(response)
+           this.clearInput()
+           this.LoadTeam()
+           this.isUpdate = false
+         },
+        (error) => { console.log(error) }) 
+
+    }else{
+      this.apiService.addTeam(this.team).subscribe(
+        (response) => { 
+           this.presentToast(response)
+           this.clearInput()
+           this.LoadTeam()
+         },
+        (error) => { console.log(error) })  
     }
-    MostrarUsuarios(){
-      let body={
-        'accion':'ListarP',
-        'cod':this.cod
-      }
-      return new Promise(resolve=> {
-        this.servicio.postData(body).subscribe((res:any)=>{
-          if(res.estado)
-          {
-            this.productos=res.datos;
+    
+   }
+   
+  public delete():void{
+    this.apiService.deleteTeam(this.id).subscribe(
+      (response) => { 
+         this.presentToast(response)
+         this.LoadTeam()
+       },
+      (error) => { console.log(error) })
+  }
+
+   public getId(id:string):void{
+     this.id = id
+     this.presentAlertConfirm()
+   }
+
+   public getTeam(id:string):void{
+    this.apiService.getTeam(id).subscribe(
+      (response) => { 
+        const {id, nombre, detalle, precio} = response
+        this.team.id = id 
+        this.team.nombre = nombre
+        this.team.detalle = detalle
+        this.team.precio = precio
+        this.isUpdate = true
+        this.bandera = true
+       },
+      (error) => { console.log(error) })
+   }
+
+   public clearInput():void{
+     this.team.nombre = '';
+     this.team.detalle = '';
+     this.team.precio = '';
+   }
+
+   async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirmación',
+      message: '<strong>Desea Eliminar</strong>!!!',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'danger',
+          handler: () => {
+            return false;
           }
-          else
-          {
-            this.mostrarToast('Error al cargar datos');
+        }, {
+          text: 'Ok',
+          handler: () => {
+           this.delete()
           }
-        }, (error)=>{
-          this.mostrarToast('Error de conexion');
-          console.log(error);
-        });
-        
-      });
-    }
-  public editar(idproducto){
-    this.servicio.setsesion('idproducto',idproducto);
-    this.navCtrl.navigateRoot(['/acproducto']);
+        }
+      ]
+    });
+
+    await alert.present();
   }
-  public eliminar(idusuario){
-    this.servicio.setsesion('idusuario',idusuario);
-    this.navCtrl.navigateRoot(['/eproducto']);
-  }
-  public volver()
-  {
-    this.navCtrl.navigateRoot(['/admenu']);
-  }
-  async mostrarToast(texto)
-  {
-    const toast= await this.ToastCtrl.create({
-      message: texto,
-      duration: 1500,
-      position: 'top'
+
+
+   async presentToast(message) {
+    const toast = await this.toastController.create({
+      message:message.msg ,
+      duration: 2000,
+      color:"primary"
     });
     toast.present();
-  }
+   }
 }

@@ -76,7 +76,9 @@ export class ReclientePage implements OnInit {
       });
   }
 }
-
+public validarCedula(){
+  
+}
 async mostrarToast(texto)
   {
     const toast= await this.ToastCtrl.create({

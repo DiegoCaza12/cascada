@@ -8,11 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registrarventas.page.scss'],
 })
 export class RegistrarventasPage implements OnInit {
-  productos:any = [];
+  
   usuarios:any = [];
   clientes:any= [];
   cod:any;
-  
+  txt_producto:string;
+  txt_precio:string;
+  txt_cantidad:string;
+  txt_total:string;
+  objetos:any=[];
   constructor(
     private ToastCtrl: ToastController,
     private servicio: AccesoService, 
@@ -24,9 +28,31 @@ export class RegistrarventasPage implements OnInit {
    }
 
   ngOnInit() {
+    
+  }
+  agregar(){
+    
+    if(this.txt_producto=='Botellones'){
+      this.txt_precio='0.90'
+      var r=parseFloat(this.txt_cantidad)*parseFloat(this.txt_precio);
+      this.txt_total=r.toString();
+    }else{
+      this.txt_precio='0.90'
+      var r=parseFloat(this.txt_cantidad)*parseFloat(this.txt_precio);
+      this.txt_total=r.toString();
+    }
+    console.log(this.txt_total);
+    let list: Array<any> = [];
+    {
+      this.txt_producto='',
+      this.txt_cantidad='',
+      this.txt_precio='',
+      this.txt_total=''
+    }
+
   }
   ionViewDidEnter(){
-    this.listarContactos();
+    
     this.MostrarClientes();
     
     }
@@ -35,26 +61,10 @@ export class RegistrarventasPage implements OnInit {
       this.MostrarUsuarios();
       
       }
-    listarContactos(){
-    let body={
-      'accion':'ListarP',
-      'cod': this.cod
-    }
-    return new Promise (resolve=>{
-      this.servicio.postData(body).subscribe((res:any)=>{
-        if(res.estado){
-          this.productos=res.datos
-        }else{
-          this.mostrarToast('Error al cargar datos');
-        }
-      },(error)=>{
-        this.mostrarToast('Error de conexion')
-      });
-    });
-    }
+    
     MostrarClientes(){
       let body={
-        'accion':'ListarC',
+        'accion':'ListarC1',
         'cod':this.cod
       }
       return new Promise(resolve=> {
@@ -75,7 +85,7 @@ export class RegistrarventasPage implements OnInit {
     }
     MostrarUsuarios(){
       let body={
-        'accion':'ListarU',
+        'accion':'mostrar',
         'cod':this.cod
       }
       return new Promise(resolve=> {

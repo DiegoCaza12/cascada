@@ -2,76 +2,145 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { AccesoService } from '../servicios/acceso.service';
 import { Router } from '@angular/router';
-
+import {Team2}from '../models/teams2';
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.page.html',
   styleUrls: ['./usuarios.page.scss'],
 })
 export class UsuariosPage implements OnInit {
-  usuarios:any = [];
-  cod:any;
+  id = ''
+  bandera = false
+  isUpdate = false
+  team2:Team2 = {cedula: '', nombre: '', apellido: '', email: '', telefono: '', direccion: '',usuario: '',clave: ''}
+  ListTeam:Team2 []
 
-  constructor(private ToastCtrl: ToastController,
-    private servicio: AccesoService, 
-    private navCtrl:NavController,
-    public alertController:AlertController,
-    private router: Router) 
-    { 
-      this.servicio.getsesion('id_usuario').then(res=>{
-        this.cod=res;
-        this.mostrarToast( this.cod);
-      });
-    }
+  constructor(public apiService:AccesoService,
+    public toastController: ToastController,
+    public alertController: AlertController,
+    private router:Router
+    ) { 
+this.LoadTeam();
+
+}
 
   ngOnInit() {
-    
   }
-  public registrar(){
-    this.navCtrl.navigateRoot(['/registro'])
-  }
-  ionViewDidEnter(){
-    this.MostrarUsuarios();
-    }
-    MostrarUsuarios(){
-      let body={
-        'accion':'ListarU',
-        'cod':this.cod
-      }
-      return new Promise(resolve=> {
-        this.servicio.postData(body).subscribe((res:any)=>{
-          if(res.estado)
-          {
-            this.usuarios=res.datos;
-          }
-          else
-          {
-            this.mostrarToast('Error al cargar datos');
-          }
-        }, (error)=>{
-          this.mostrarToast('Error de conexion');
-        });
+  public openAndCloseModal():void{
+    this.bandera = !this.bandera
+    this.isUpdate = false
+    this.clearInput()
+}
+
+  public LoadTeam():void{
+    this.apiService.getTeams2().subscribe(
+      (response) => { 
+        this.ListTeam = response
         
-      });
+       },
+      (error) => { console.log(error) })
+  }
+  public save():void{
+    if(this.isUpdate){
+      this.apiService.updateTeam2(this.team2).subscribe(
+        (response) => { 
+           this.presentToast(response)
+           this.clearInput()
+           this.LoadTeam()
+           
+           this.isUpdate = false
+         },
+        (error) => { console.log(error) }) 
+
+    }else{
+      this.apiService.addTeam2(this.team2).subscribe(
+        (response) => { 
+           this.presentToast(response)
+           this.clearInput()
+           this.LoadTeam()
+         },
+        (error) => { console.log(error) })  
     }
-  public editar(idusuario){
-    this.servicio.setsesion('idusuario',idusuario);
-    this.navCtrl.navigateRoot(['/musuarios']);
+    
+   }
+   
+  public delete():void{
+    this.apiService.deleteTeam2(this.id).subscribe(
+      (response) => { 
+         this.presentToast(response)
+         this.LoadTeam()
+       },
+      (error) => { console.log(error) })
   }
-  public eliminar(idusuario){
-    this.servicio.setsesion('idusuario',idusuario);
-    this.navCtrl.navigateRoot(['/musuarios']);
+
+   public getId2(id:string):void{
+     this.id = id
+     this.presentAlertConfirm()
+   }
+
+   public getTeam2(id:string):void{
+    this.apiService.getTeam2(id).subscribe(
+      (response) => { 
+        const {id,cedula, nombre, apellido,email, telefono,direccion,usuario,clave} = response
+        this.team2.id = id 
+        this.team2.cedula = cedula
+        this.team2.nombre = nombre
+        this.team2.apellido = apellido
+        this.team2.email = email
+        this.team2.telefono = telefono
+        this.team2.direccion = direccion
+        this.team2.usuario = usuario
+        this.team2.clave = clave
+        this.isUpdate = true
+        this.bandera = true
+       },
+      (error) => { console.log(error) })
+   }
+
+   public clearInput():void{
+     this.team2.cedula = '';
+     this.team2.nombre = '';
+     this.team2.apellido = '';
+     this.team2.email = '';
+     this.team2.telefono = '';
+     this.team2.direccion = '';
+     this.team2.usuario = '';
+     this.team2.clave = '';
+   }
+
+   async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirmación',
+      message: '<strong>Desea Eliminar</strong>!!!',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'danger',
+          handler: () => {
+            return false;
+          }
+        }, {
+          text: 'Ok',
+          handler: () => {
+           this.delete()
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
-  public volver(){
-    this.navCtrl.navigateRoot(['/admenu'])
-  }
-  async mostrarToast(texto)
-  {
-    const toast= await this.ToastCtrl.create({
-      message: texto,
-      duration: 1500,
-      position: 'top'
+
+
+   async presentToast(message) {
+    const toast = await this.toastController.create({
+      message:message.msg ,
+      duration: 2000,
+      color:"primary"
     });
     toast.present();
-  }
+   }
+
 }
