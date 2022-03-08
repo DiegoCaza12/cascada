@@ -1,24 +1,33 @@
-<ion-header [translucent]="true">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" routerLink="/">CASCADA</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/loggin" routerLinkActive="active"><ion-icon slot="icon-only" name="person"></ion-icon> Admin</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/usu-loggin" routerLinkActive="active"><ion-icon slot="icon-only" name="person"></ion-icon> Usuario</a>
-        </li>
-        
-      </ul>
+
+  <ion-header [translucent]="true">
+    <div class="container-fluid navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar ">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav ml-auto">
+                
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Loggin</a>
+                <div class="dropdown-menu show" data-bs-popper="none">
+                  <a class="dropdown-item" routerLink="/loggin">Admin</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" routerLink="/usu-loggin">Usuarios</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
-  </nav>
-</ion-header>
-<ion-content [fullscreen]="true">
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+
   
   <ion-grid >
     <ion-row>

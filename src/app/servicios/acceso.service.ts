@@ -1,3 +1,4 @@
+
 import { NavController } from '@ionic/angular';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -6,9 +7,10 @@ import { Storage } from '@capacitor/storage';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/timeout';
-import {Team}from '../models/teams'
-import {Team1}from '../models/teams1'
-import {Team2}from '../models/teams2'
+import {Team}from '../models/teams';
+import {Team1}from '../models/teams1';
+import {Team2}from '../models/teams2';
+import { Team3 } from './../models/teams3';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +20,7 @@ export class AccesoService {
   url :string ="http://localhost/prueba2/";
   url1 :string ="http://localhost/prueba1/";
   url2 :string ="http://localhost/prueba3/";
-
+  url3 :string ="http://localhost/prueba4/";
   constructor(public http:HttpClient,
     private nat:NavController,) { }
   postData(body){
@@ -56,6 +58,7 @@ export class AccesoService {
   await Storage.remove({key:id});
   this.nat.navigateRoot('/',{replaceUrl:true});
  }
+ //Productos
  getTeams() {
   return this.http.get<Team[]>(this.url);
  }
@@ -79,7 +82,7 @@ public updateTeam(team:Team){
   return this.http.put(this.url, team)
 }
 
-
+//Clientes
 getTeams1() {
   return this.http.get<Team1[]>(this.url1);
  }
@@ -106,7 +109,7 @@ public updateTeam1(team1:Team1){
   return this.http.put(this.url1, team1)
 }
 
-
+// Usuarios
 getTeams2() {
   return this.http.get<Team2[]>(this.url2);
  }
@@ -134,5 +137,28 @@ public getTeam2(id:string){
 public updateTeam2(team2:Team2){
   return this.http.put(this.url2, team2)
 }
+//Ventas
+getTeams3() {
+  return this.http.get<Team3[]>(this.url3);
+ }
+ public addTeam3(team:Team3){
+  const formData = new FormData()
+  formData.append("fecha", team.fecha)
+  formData.append("idcliente", team.idcliente)
+  formData.append("idusuario", team.idusuario)
+  formData.append("total", team.total)
+  return this.http.post(this.url3, formData)
+}
 
+public deleteTeam3(id:string){
+  return this.http.delete(this.url3+'?id='+id)
+}
+
+public getTeam3(id:string){
+  return this.http.get<Team3>(this.url3+'?id='+id)
+}
+
+public updateTeam3(team:Team3){
+  return this.http.put(this.url3, team)
+}
 }

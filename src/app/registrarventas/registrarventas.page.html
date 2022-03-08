@@ -1,10 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>registrar ventas</ion-title>
+    <ion-button slot="start">
+      <ion-back-button defaultHref="/ventas"> </ion-back-button>
+    </ion-button>
   </ion-toolbar>
-  <ion-item *ngFor="let persona of usuarios">
-    <ion-label>Usuario : {{ persona.usuario }} </ion-label>
-  </ion-item>
+  
 </ion-header>
 
 <ion-content>
@@ -13,12 +14,15 @@
     <ion-row>
       <ion-col>
         <label >fecha:</label>
-        <input type="datetime-local" name="txt_fecha" id="txt_fecha">
+        <ion-input value="" required [(ngModel)]="fecha"display-format="YYYY-MM-DD"></ion-input>
       </ion-col>
       <ion-col>
         <label >Clientes</label>
-        <ion-select placeholder="Selecciona cliente"required [(ngModel)]="txt_cliente"></ion-select>
-        <ion-select-option value="Botellones">Botellones</ion-select-option>
+        <ion-input type="text" required [(ngModel)]="txt_cliente"></ion-input>
+      </ion-col>
+      <ion-col>
+        <label >Usuarios</label>
+        <ion-input type="text" required [(ngModel)]="txt_usuario"></ion-input>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -45,7 +49,7 @@
     <ion-row>
      
         <ion-button color="primary" expand="full" (click)="agregar()">agregar</ion-button>
-      
+        <ion-button color="primary" expand="full" (click)="guardar()">guardar</ion-button>
     </ion-row>
   </ion-grid>
   <div>

@@ -12,11 +12,15 @@ export class RegistrarventasPage implements OnInit {
   usuarios:any = [];
   clientes:any= [];
   cod:any;
+  txt_fecha:string;
+  txt_idcliente:string;
+  txt_idusuario:string;
   txt_producto:string;
   txt_precio:string;
   txt_cantidad:string;
   txt_total:string;
-  objetos:any=[];
+  time = new Date(null);
+  fecha : Date = new Date();
   constructor(
     private ToastCtrl: ToastController,
     private servicio: AccesoService, 
@@ -32,23 +36,9 @@ export class RegistrarventasPage implements OnInit {
   }
   agregar(){
     
-    if(this.txt_producto=='Botellones'){
-      this.txt_precio='0.90'
-      var r=parseFloat(this.txt_cantidad)*parseFloat(this.txt_precio);
-      this.txt_total=r.toString();
-    }else{
-      this.txt_precio='0.90'
-      var r=parseFloat(this.txt_cantidad)*parseFloat(this.txt_precio);
-      this.txt_total=r.toString();
-    }
+   
     console.log(this.txt_total);
-    let list: Array<any> = [];
-    {
-      this.txt_producto='',
-      this.txt_cantidad='',
-      this.txt_precio='',
-      this.txt_total=''
-    }
+    
 
   }
   ionViewDidEnter(){
@@ -72,6 +62,7 @@ export class RegistrarventasPage implements OnInit {
           if(res.estado)
           {
             this.clientes=res.datos;
+
           }
           else
           {
@@ -131,6 +122,62 @@ export class RegistrarventasPage implements OnInit {
         });
     }
   */
+    public guardar(){
+      if(this.txt_producto=='Botellones'){
+        this.txt_precio='0.90'
+        var r=parseFloat(this.txt_cantidad)*parseFloat(this.txt_precio);
+        this.txt_total=r.toString();
+      }else{
+        this.txt_precio='0.90'
+        var r=parseFloat(this.txt_cantidad)*parseFloat(this.txt_precio);
+        this.txt_total=r.toString();
+      }
+      if(this.txt_fecha=='')
+      {
+       this.mostrarToast('nombre producto requerida');
+      }
+      else if(this.txt_idcliente=='')
+      {
+        this.mostrarToast('nombre requerido');
+      }
+      else if(this.txt_idusuario=='')
+      {
+        this.mostrarToast('nombre requerido');
+      }
+      else if(this.txt_total=='')
+      {
+        this.mostrarToast('precio requerido');
+      }
+      else
+      {
+        let body={
+          'accion': 'insertarV',
+          'cod':this.cod,
+          'fecha': this.fecha.toISOString(),
+          'idcliente': this.txt_idcliente,
+          'idusuario': this.txt_idusuario,
+          'total': this.txt_total
+        }
+        console.log(this.txt_total);
+        console.log(this.fecha);
+        return new Promise (resolve =>{
+          this.servicio.postData(body).subscribe((res:any)=>{
+            if(res.estado)
+            {
+              this.mostrarToast("registro satisfactorio");
+              this.navCtrl.navigateRoot(['/usuventas']);
+            }
+            else
+            {
+              this.mostrarToast('erro al guardar');
+            }
+          }, (err)=>{
+            this.mostrarToast('Error de Conexion');
+            console.log(err);
+          });
+        });
+      }
+    }
   
   async mostrarToast(texto)
   {
