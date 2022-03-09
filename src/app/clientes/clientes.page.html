@@ -5,6 +5,9 @@
     <ion-button color="success" fill="outline" 
                (click)="openAndCloseModal()">
                Añadir Clientes</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>           
   </ion-toolbar>
 </ion-header>
@@ -56,7 +59,7 @@
       <ion-card-content>
         <ion-item>
           <ion-label position="floating">Cedula</ion-label>
-          <ion-input [(ngModel)]="team1.cedula"></ion-input>
+          <ion-input  [(ngModel)]="team1.cedula"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Nombre</ion-label>
