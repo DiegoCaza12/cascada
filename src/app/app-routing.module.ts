@@ -116,6 +116,10 @@ const routes: Routes = [
     path: 'eventas',
     loadChildren: () => import('./eventas/eventas.module').then( m => m.EventasPageModule)
   },
+  {
+    path: 'admregistroven',
+    loadChildren: () => import('./admregistroven/admregistroven.module').then( m => m.AdmregistrovenPageModule)
+  },
 
 
 

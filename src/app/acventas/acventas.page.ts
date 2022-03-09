@@ -71,6 +71,7 @@ export class AcventasPage implements OnInit {
             }
           }, (err)=>{
             this.mostrarToast('Error de Conexion');
+            console.log(err);
           });
         });
     }

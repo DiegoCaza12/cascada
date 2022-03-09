@@ -7,20 +7,29 @@
 
 <ion-content>
   <ion-list>
+    <ion-item>
+    
+      Fecha        idCliente IdUsuario Total
+    
+  </ion-item>
     <ion-item-sliding *ngFor="let usuario of ventas">
       <ion-item class="item-text-wrap" >
-     
+          
           <ion-label>
-            {{usuario.fecha }} {{ usuario.idcliente }}
-             {{ usuario.idusuario }} {{usuario.total}}
+            {{usuario.fecha }}  {{ usuario.idcliente }}
+              {{ usuario.idusuario }}  {{usuario.total}}
               
           </ion-label>
        
       </ion-item>
   
       <ion-item-options side="end">
-        <ion-item-option (click)="editar(usuario.idventa)">Modificar</ion-item-option>
-        <ion-item-option color="danger" (click)="eliminar(usuario.idventa)">Eliminar</ion-item-option>
+        <ion-item-option color="primary"(click)="editar(usuario.idventa)">
+          <ion-icon name="pencil"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="eliminar()">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>

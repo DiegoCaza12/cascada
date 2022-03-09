@@ -11,13 +11,14 @@ import { Component, OnInit } from '@angular/core';
 export class UsuventasPage implements OnInit {
   ventas:any = [];
   cod:any;
+  idventa:any;
   constructor(
     private ToastCtrl: ToastController,
     private servicio: AccesoService, 
     private navCtrl:NavController,
     private router:Router
   ) { 
-    this.servicio.getsesion('id_usuario').then(res=>{
+    this.servicio.getsesion('idventa').then(res=>{
       this.cod=res;
       console.log(this.cod);
       //this.mostrarToast( this.cod);
@@ -57,11 +58,33 @@ export class UsuventasPage implements OnInit {
     }
   public editar(idventa){
     this.servicio.setsesion('idventa',idventa);
-    this.navCtrl.navigateRoot(['/acventas']);
+    this.navCtrl.navigateRoot(['/acventas'])
   }
-  public eliminar(idventa){
-    this.servicio.setsesion('idventa',idventa);
-    this.navCtrl.navigateRoot(['/eventas']);
+  
+    public eliminar()
+      {
+        
+          let body={
+            'accion': 'eliminarV',
+            'idventa': this.cod
+          }
+          return new Promise (resolve =>{
+            this.servicio.postData(body).subscribe((res:any)=>{
+              if(res.estado)
+              {
+                this.mostrarToast("Venta eliminada");
+                this.router.navigate(['/usuventas']);
+              }
+              else
+              {
+                this.mostrarToast('error al eliminar');
+              }
+            }, (err)=>{
+              this.mostrarToast('Error de Conexion');
+              console.log(err);
+            });
+          });
+    
   }
   public volver(){
     this.router.navigate(['/usumenu']);

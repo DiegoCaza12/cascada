@@ -28,7 +28,7 @@ export class VentasPage implements OnInit {
   ngOnInit() {
   }
   public registrar(){
-    this.navCtrl.navigateRoot(['/registrarventas'])
+    this.navCtrl.navigateRoot(['/admregistroven'])
   }
   ionViewDidEnter(){
     this.MostrarUsuarios();
@@ -59,10 +59,31 @@ export class VentasPage implements OnInit {
     this.servicio.setsesion('idventa',idventa);
     this.navCtrl.navigateRoot(['/acventas']);
   }
-  public eliminar(idventa){
-    this.servicio.setsesion('idventa',idventa);
-    this.navCtrl.navigateRoot(['/eventas']);
-  }
+  public eliminar(){
+    {
+        
+      let body={
+        'accion': 'eliminarV',
+        'idventa': this.cod
+      }
+      return new Promise (resolve =>{
+        this.servicio.postData(body).subscribe((res:any)=>{
+          if(res.estado)
+          {
+            this.mostrarToast("Venta eliminada");
+            this.router.navigate(['/ventas']);
+          }
+          else
+          {
+            this.mostrarToast('error al eliminar');
+          }
+        }, (err)=>{
+          this.mostrarToast('Error de Conexion');
+          console.log(err);
+        });
+      });
+    }
+}
   public volver(){
     this.router.navigate(['/admenu']);
   }

@@ -5,7 +5,7 @@
 </ion-header>
 <ion-list>
   <ion-item>
-    <ion-label>fecha</ion-label>
+    <ion-label>Fecha</ion-label>
     <ion-input type="text" required [(ngModel)]="txt_fecha"></ion-input>
   </ion-item>
    <ion-item>
@@ -13,7 +13,7 @@
     <ion-input type="text" required [(ngModel)]="txt_idcliente"></ion-input>
   </ion-item>
   <ion-item *ngFor="let usu of usuario">
-    <ion-label>Usuario:{{usu.usuario}} id: {{usu.idusuario}}</ion-label>
+    <ion-label disable="true">Usuario:{{usu.usuario}} id: {{usu.idadm}}</ion-label>
     
     <ion-input type="text" required [(ngModel)]="txt_idusuario"></ion-input>
   </ion-item>

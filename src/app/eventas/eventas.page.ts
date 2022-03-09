@@ -15,7 +15,7 @@ export class EventasPage implements OnInit {
     private servicio: AccesoService, 
     private navCtrl:NavController
   ) {
-    this.servicio.getsesion('id_usuario').then(res=>{
+    this.servicio.getsesion('idventa').then(res=>{
       this.cod=res;
       });
    }
