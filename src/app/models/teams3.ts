@@ -3,5 +3,5 @@ export interface Team3{
     fecha: string,
     idcliente: string,
     idusuario: string,
-    total: string
+    total: string,
 }

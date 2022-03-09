@@ -11,21 +11,19 @@ export class ReportesPage implements OnInit {
   codusuario:any;
   usuarios: any [];
   
-  date:string;
-  constructor(private ToastCtrl: ToastController,
-    private servicio: AccesoService, private navCtrl:NavController) { 
-      this.servicio.getsesion('idventa').then(res=>{
-        this.codusuario=res;
-        //this.mostrarToast( this.codusuario);
-        });
-    }
-
-  ngOnInit() {
+  fecha : string;
+  constructor(
+    private ToastCtrl: ToastController,
+    private servicio: AccesoService, private navCtrl:NavController
+  ) {}
+  ngOnInit(): void {
+    
   }
   public listardiario(){
     let body={
-      'accion':'ListarFecha',
-      'date':this.date
+      'accion':'ListarD',
+      //'idusuario': this.codusuario,
+      'date':this.fecha
 
     }
     return new Promise (resolve=>{
@@ -38,7 +36,6 @@ export class ReportesPage implements OnInit {
         }
       },(error)=>{
         this.mostrarToast('Error de conexion')
-        console.log(error);
       });
     });
   }

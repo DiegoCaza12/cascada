@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Team3 } from './../models/teams3';
 import { AccesoService } from './../servicios/acceso.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,126 +10,70 @@ import { ToastController, NavController, AlertController } from '@ionic/angular'
   styleUrls: ['./ventas.page.scss'],
 })
 export class VentasPage implements OnInit {
-  id = ''
-  bandera = false
-  isUpdate = false
-  team:Team3 = {fecha:'', idcliente:'', idusuario:'', total:''}
-  ListTeam:Team3 []
-  txt_fecha:string;
-  
-  constructor(public apiService:AccesoService,
-              public toastController: ToastController,
-              public alertController: AlertController) 
-  { 
-    this.LoadTeam3();
-    
+  ventas:any = [];
+  cod:any;
+  constructor(
+    private ToastCtrl: ToastController,
+    private servicio: AccesoService, 
+    private navCtrl:NavController,
+    private router:Router
+  ) { 
+    this.servicio.getsesion('id_usuario').then(res=>{
+      this.cod=res;
+      console.log(this.cod);
+      //this.mostrarToast( this.cod);
+    });
   }
 
   ngOnInit() {
   }
-  public openAndCloseModal():void{
-    this.bandera = !this.bandera
-    this.isUpdate = false
-    this.clearInput()
-}
-public LoadTeam3():void{
-  this.apiService.getTeams3().subscribe(
-    (response) => { 
-      this.ListTeam = response
-     },
-    (error) => { console.log(error) })
-}
-public save():void{
-  if(this.isUpdate){
-    this.apiService.updateTeam3(this.team).subscribe(
-      (response) => { 
-         this.presentToast(response)
-         this.clearInput()
-         this.LoadTeam3()
-         this.isUpdate = false
-       },
-      (error) => { console.log(error) }) 
-
-  }else{
-    this.apiService.addTeam3(this.team).subscribe(
-      (response) => { 
-         this.presentToast(response)
-         this.clearInput()
-         this.LoadTeam3()
-       },
-      (error) => { console.log(error) })  
+  public registrar(){
+    this.navCtrl.navigateRoot(['/registrarventas'])
+  }
+  ionViewDidEnter(){
+    this.MostrarUsuarios();
+    }
+    MostrarUsuarios(){
+      let body={
+        'accion':'ListarV',
+        'cod':this.cod
+      }
+      return new Promise(resolve=> {
+        this.servicio.postData(body).subscribe((res:any)=>{
+          if(res.estado)
+          {
+            this.ventas=res.datos;
+          }
+          else
+          {
+            this.mostrarToast('Error al cargar datos');
+          }
+        }, (error)=>{
+          this.mostrarToast('Error de conexion');
+          console.log(error);
+        });
+        
+      });
+    }
+  public editar(idventa){
+    this.servicio.setsesion('idventa',idventa);
+    this.navCtrl.navigateRoot(['/acventas']);
+  }
+  public eliminar(idventa){
+    this.servicio.setsesion('idventa',idventa);
+    this.navCtrl.navigateRoot(['/eventas']);
+  }
+  public volver(){
+    this.router.navigate(['/admenu']);
   }
   
- }
- public delete():void{
-  this.apiService.deleteTeam3(this.id).subscribe(
-    (response) => { 
-       this.presentToast(response)
-       this.LoadTeam3()
-     },
-    (error) => { console.log(error) })
-}
-
- public getId3(id:string):void{
-   this.id = id
-   this.presentAlertConfirm()
- }
-
- public getTeam3(id:string):void{
-  this.apiService.getTeam3(id).subscribe(
-    (response) => { 
-      const {id, fecha, idcliente, idusuario,total} = response
-      this.team.id = id 
-      this.team.fecha = fecha
-      this.team.idcliente = idcliente
-      this.team.idusuario = idusuario
-      this.team.total = total
-      this.isUpdate = true
-      this.bandera = true
-     },
-    (error) => { console.log(error) })
- }
-
- public clearInput():void{
-   this.team.fecha = '';
-   this.team.idcliente = '';
-   this.team.idusuario = '';
-   this.team.total = '';
- }
-
- async presentAlertConfirm() {
-  const alert = await this.alertController.create({
-    cssClass: 'my-custom-class',
-    header: 'Confirmación',
-    message: '<strong>Desea Eliminar</strong>!!!',
-    buttons: [
-      {
-        text: 'Cancelar',
-        role: 'cancel',
-        cssClass: 'danger',
-        handler: () => {
-          return false;
-        }
-      }, {
-        text: 'Ok',
-        handler: () => {
-         this.delete()
-        }
-      }
-    ]
-  });
-
-  await alert.present();
-}
-
-
- async presentToast(message) {
-  const toast = await this.toastController.create({
-    message:message.msg ,
-    duration: 2000,
-    color:"primary"
-  });
-  toast.present();
- }
-
+  async mostrarToast(texto)
+  {
+    const toast= await this.ToastCtrl.create({
+      message: texto,
+      duration: 1500,
+      position: 'top'
+    });
+    toast.present();
+  }
 }

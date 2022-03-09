@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Actualizar ventas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-item *ngFor="let contacto of ventas">
+    <ion-label>Fecha :  </ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_fecha"> {{ contacto.fecha }}</ion-input>
+  </ion-item>
+  <ion-item *ngFor="let contacto of ventas">
+    <ion-label>idCliente :  </ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_idcliente"> {{ contacto.idcliente }}</ion-input>
+  </ion-item>
+
+  <ion-item *ngFor="let contacto of ventas">
+    <ion-label>Idusuario :</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_idusuario">{{ contacto.idusuario }}</ion-input>
+  </ion-item>
+  <ion-item *ngFor="let contacto of ventas">
+    <ion-label>Total :</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_total">{{ contacto.total }}</ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-button (click)="modificar()">Modificar</ion-button>
+  </ion-item> 
+</ion-content>
+

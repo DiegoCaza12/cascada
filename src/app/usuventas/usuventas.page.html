@@ -1,18 +1,24 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>usuventas</ion-title>
+    <ion-title>Ventas</ion-title>
   </ion-toolbar>
+  
 </ion-header>
 
-<ion-content>
+<ion-content> 
   <ion-list>
+    <ion-item>
+    
+      Fecha        idCliente IdUsuario Total
+    
+  </ion-item>
     <ion-item-sliding *ngFor="let usuario of ventas">
       <ion-item class="item-text-wrap" >
-     
+          
           <ion-label>
-            {{usuario.fecha }} {{usuario.idproducto }}
-            {{ usuario.idcliente }} {{ usuario.idusuario }}
-            {{usuario.cantidad }} {{usuario.precio_unit}} {{usuario.total}}
+            {{usuario.fecha }}  {{ usuario.idcliente }}
+              {{ usuario.idusuario }}  {{usuario.total}}
+              
           </ion-label>
        
       </ion-item>
@@ -28,6 +34,7 @@
     <ion-button color="dark"(click)="registrar()">Registrar ventas</ion-button>
   </ion-item> 
   <ion-item>
+    
     <ion-button color="primary"(click)="volver()">Regresar menu</ion-button>
   </ion-item>
 </ion-content>

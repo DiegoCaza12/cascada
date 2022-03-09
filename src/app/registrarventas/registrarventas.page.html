@@ -1,72 +1,46 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>registrar ventas</ion-title>
-    <ion-button slot="start">
-      <ion-back-button defaultHref="/ventas"> </ion-back-button>
-    </ion-button>
+    <ion-title>reventas</ion-title>
   </ion-toolbar>
-  
 </ion-header>
-
-<ion-content>
-  <ion-grid  >
+<ion-list>
+  <ion-item>
+    <ion-label>fecha</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_fecha"></ion-input>
+  </ion-item>
+   <ion-item>
+     <ion-label>IdCliente:</ion-label>
+    <ion-input type="text" required [(ngModel)]="txt_idcliente"></ion-input>
+  </ion-item>
+  <ion-item *ngFor="let usu of usuario">
+    <ion-label>Usuario:{{usu.usuario}} id: {{usu.idusuario}}</ion-label>
     
-    <ion-row>
-      <ion-col>
-        <label >fecha:</label>
-        <ion-input value="" required [(ngModel)]="fecha"display-format="YYYY-MM-DD"></ion-input>
-      </ion-col>
-      <ion-col>
-        <label >Clientes</label>
-        <ion-input type="text" required [(ngModel)]="txt_cliente"></ion-input>
-      </ion-col>
-      <ion-col>
-        <label >Usuarios</label>
-        <ion-input type="text" required [(ngModel)]="txt_usuario"></ion-input>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-label>productos</ion-label>
-        <ion-select placeholder="Selecciona producto"required [(ngModel)]="txt_producto">
+    <ion-input type="text" required [(ngModel)]="txt_idusuario"></ion-input>
+  </ion-item>
+  <ion-item>
+  <div class="row">
+    <div class="col">
+      <ion-label>Productos</ion-label>
+        <ion-select required [(ngModel)]="txt_producto"placeholder="Selecciona Uno">
           <ion-select-option value="Botellones">Botellones</ion-select-option>
           <ion-select-option value="Barriles">Barriles</ion-select-option>
         </ion-select>
-      </ion-col>
-      <ion-col >
-        <label >precio:</label>
-        <ion-input placeholder="0.90"disabled="true"type="text" [(ngModel)]="txt_precio"></ion-input>
-      </ion-col>
-      <ion-col >
-        <label >cantidad:</label>
-        <ion-input type="text" [(ngModel)]="txt_cantidad"></ion-input>
-      </ion-col>
-      <ion-col>
-        <ion-label>Total</ion-label>
-       <ion-input type="text" required [(ngModel)]="txt_total"></ion-input>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-     
-        <ion-button color="primary" expand="full" (click)="agregar()">agregar</ion-button>
-        <ion-button color="primary" expand="full" (click)="guardar()">guardar</ion-button>
-    </ion-row>
-  </ion-grid>
-  <div>
-    <ion-grid border="1">
-      <ion-row>
-        <ion-col>Producto</ion-col>
-        <ion-col>Cantidad</ion-col>
-        <ion-col>Precio</ion-col>
-        <ion-col>Total</ion-col>
-      </ion-row>
-      <ion-row *ngFor="let obj of list ">
-        <ion-col>{{obj.txt_producto}}</ion-col>
-        <ion-col>{{obj.txt_cantidad}}</ion-col>
-        <ion-col>{{obj.txt_precio}}</ion-col>
-        <ion-col>{{obj.txt_total}}</ion-col>
-      </ion-row>
-    </ion-grid>
+    </div>
+    <div class="col">
+      <label >Precio:</label>
+      <ion-input placeholder="0.95"disabled="true" required [(ngModel)]="txt_precio"></ion-input>
+    </div>
+    <div class="col">
+      <label>Cantidad:</label>
+      <ion-input type="text" required [(ngModel)]="txt_cantidad"></ion-input>
+    </div>
+    <div class="col">
+      <label >Total:</label>
+      <ion-input type="text" required [(ngModel)]="txt_total"></ion-input>
+    </div>
   </div>
-</ion-content>
-
+</ion-item>
+</ion-list>
+  <ion-item>
+    <ion-button (click)="guardar()" >guardar</ion-button>
+  </ion-item>

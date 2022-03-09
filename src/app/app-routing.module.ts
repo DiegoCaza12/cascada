@@ -108,7 +108,15 @@ const routes: Routes = [
     path: 'reportes',
     loadChildren: () => import('./reportes/reportes.module').then( m => m.ReportesPageModule)
     ,canActivate:[VigilanteGuard]
+  },  {
+    path: 'acventas',
+    loadChildren: () => import('./acventas/acventas.module').then( m => m.AcventasPageModule)
   },
+  {
+    path: 'eventas',
+    loadChildren: () => import('./eventas/eventas.module').then( m => m.EventasPageModule)
+  },
+
 
 
 

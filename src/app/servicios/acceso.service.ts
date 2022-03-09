@@ -141,12 +141,12 @@ public updateTeam2(team2:Team2){
 getTeams3() {
   return this.http.get<Team3[]>(this.url3);
  }
- public addTeam3(team:Team3){
+ public addTeam3(team3:Team3){
   const formData = new FormData()
-  formData.append("fecha", team.fecha)
-  formData.append("idcliente", team.idcliente)
-  formData.append("idusuario", team.idusuario)
-  formData.append("total", team.total)
+  formData.append("fecha", team3.fecha)
+  formData.append("idcliente", team3.idcliente)
+  formData.append("idusuario", team3.idusuario)
+  formData.append("total", team3.total)
   return this.http.post(this.url3, formData)
 }
 
@@ -158,7 +158,7 @@ public getTeam3(id:string){
   return this.http.get<Team3>(this.url3+'?id='+id)
 }
 
-public updateTeam3(team:Team3){
-  return this.http.put(this.url3, team)
+public updateTeam3(team3:Team3){
+  return this.http.put(this.url3, team3)
 }
 }

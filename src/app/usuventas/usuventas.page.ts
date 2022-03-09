@@ -19,9 +19,11 @@ export class UsuventasPage implements OnInit {
   ) { 
     this.servicio.getsesion('id_usuario').then(res=>{
       this.cod=res;
-      this.mostrarToast( this.cod);
+      console.log(this.cod);
+      //this.mostrarToast( this.cod);
     });
   }
+  
 
   ngOnInit() {
   }
@@ -48,21 +50,23 @@ export class UsuventasPage implements OnInit {
           }
         }, (error)=>{
           this.mostrarToast('Error de conexion');
+          console.log(error);
         });
         
       });
     }
-  public editar(idventas){
-    this.servicio.setsesion('idventas',idventas);
+  public editar(idventa){
+    this.servicio.setsesion('idventa',idventa);
     this.navCtrl.navigateRoot(['/acventas']);
   }
-  public eliminar(idventas){
-    this.servicio.setsesion('idventas',idventas);
+  public eliminar(idventa){
+    this.servicio.setsesion('idventa',idventa);
     this.navCtrl.navigateRoot(['/eventas']);
   }
   public volver(){
     this.router.navigate(['/usumenu']);
   }
+  
   async mostrarToast(texto)
   {
     const toast= await this.ToastCtrl.create({
